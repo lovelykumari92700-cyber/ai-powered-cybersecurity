@@ -15,6 +15,24 @@ document.addEventListener('DOMContentLoaded', function () {
     const panels = document.querySelectorAll('.panel');
     const topbarTitle = document.getElementById('topbar-title-text');
     
+    // Mobile Sidebar Toggle
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    
+    if (sidebarToggle && sidebar) {
+        sidebarToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('sidebar-open');
+        });
+        
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const isClickInside = sidebar.contains(event.target) || sidebarToggle.contains(event.target);
+            if (!isClickInside && window.innerWidth < 992) {
+                sidebar.classList.remove('sidebar-open');
+            }
+        });
+    }
+    
     // Initialize tooltips
     let tooltipList = [];
     function refreshTooltips() {
@@ -27,9 +45,17 @@ document.addEventListener('DOMContentLoaded', function () {
     // Tab Navigation Switcher
     sidebarItems.forEach(item => {
         item.addEventListener('click', function (e) {
+            // Allow default behavior for logout
+            if (this.classList.contains('mt-auto')) return;
+            
             e.preventDefault();
             const targetPanel = this.getAttribute('data-panel');
             switchTab(targetPanel);
+            
+            // Auto close on mobile
+            if (window.innerWidth < 992 && sidebar) {
+                sidebar.classList.remove('sidebar-open');
+            }
         });
     });
 
@@ -157,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     model: mlModelSelect.value
                 })
             })
-            .then(res => res.json())
+            .then(res => { if(res.status === 401) { window.location.href = '/login'; throw new Error('Unauthorized'); } return res.json(); })
             .then(data => {
                 document.getElementById('text-scam-loading').classList.add('d-none');
                 document.getElementById('text-scam-results').classList.remove('d-none');
@@ -253,7 +279,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ url: url })
             })
-            .then(res => res.json())
+            .then(res => { if(res.status === 401) { window.location.href = '/login'; throw new Error('Unauthorized'); } return res.json(); })
             .then(data => {
                 document.getElementById('url-loading').classList.add('d-none');
                 document.getElementById('url-results').classList.remove('d-none');
@@ -345,7 +371,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // --- DASHBOARD CHARTS & DATA LOAD ---
     function loadDashboardStats() {
         fetch('/api/dashboard/stats')
-        .then(res => res.json())
+        .then(res => { if(res.status === 401) { window.location.href = '/login'; throw new Error('Unauthorized'); } return res.json(); })
         .then(data => {
             // Update Dashboard cards
             document.getElementById('dash-total-scans').innerText = data.total_scans;
@@ -550,7 +576,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (risk) url += `&risk_level=${encodeURIComponent(risk)}`;
         
         fetch(url)
-        .then(res => res.json())
+        .then(res => { if(res.status === 401) { window.location.href = '/login'; throw new Error('Unauthorized'); } return res.json(); })
         .then(data => {
             historyTableBody.innerHTML = '';
             
@@ -619,7 +645,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // View specific scan record callback in modal
     window.viewScanRecord = function (id) {
         fetch(`/api/history`)
-        .then(res => res.json())
+        .then(res => { if(res.status === 401) { window.location.href = '/login'; throw new Error('Unauthorized'); } return res.json(); })
         .then(scans => {
             const scan = scans.find(s => s.id === id);
             if (!scan) return;
@@ -663,7 +689,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     function loadMLMetrics() {
         fetch('/api/ml/metrics')
-        .then(res => res.json())
+        .then(res => { if(res.status === 401) { window.location.href = '/login'; throw new Error('Unauthorized'); } return res.json(); })
         .then(data => {
             modelMetricsData = data;
             
@@ -764,7 +790,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function loadAdminPanel() {
         // Count Critical Audits
         fetch('/api/history')
-        .then(res => res.json())
+        .then(res => { if(res.status === 401) { window.location.href = '/login'; throw new Error('Unauthorized'); } return res.json(); })
         .then(data => {
             const criticals = data.filter(s => s.threat_level === 'High Risk' || s.threat_level === 'Critical Risk');
             document.getElementById('admin-critical-count').innerText = criticals.length;

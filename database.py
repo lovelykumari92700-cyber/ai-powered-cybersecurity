@@ -1,6 +1,7 @@
 import sqlite3
 import json
 import os
+from werkzeug.security import generate_password_hash, check_password_hash
 
 DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'database.db')
 
@@ -25,6 +26,14 @@ def init_db():
         )
     ''')
     
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT UNIQUE NOT NULL,
+            password_hash TEXT NOT NULL
+        )
+    ''')
+    
     # Check if there is any data. If not, add some seed data for standard SaaS dashboard feel
     cursor.execute("SELECT COUNT(*) FROM scans")
     if cursor.fetchone()[0] == 0:
@@ -43,6 +52,11 @@ def init_db():
             INSERT INTO scans (scan_type, input_content, risk_score, threat_level, category, flags)
             VALUES (?, ?, ?, ?, ?, ?)
         ''', seed_data)
+        
+    cursor.execute("SELECT COUNT(*) FROM users")
+    if cursor.fetchone()[0] == 0:
+        admin_hash = generate_password_hash('admin123')
+        cursor.execute("INSERT INTO users (username, password_hash) VALUES (?, ?)", ('admin', admin_hash))
         
     conn.commit()
     conn.close()
@@ -133,3 +147,14 @@ def get_dashboard_stats():
     
     conn.close()
     return stats
+
+def verify_user(username, password):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT password_hash FROM users WHERE username = ?", (username,))
+    row = cursor.fetchone()
+    conn.close()
+    
+    if row and check_password_hash(row['password_hash'], password):
+        return True
+    return False

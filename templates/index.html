@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-z    <div class="app-container">
+    <div class="app-container">
         <!-- Sidebar Navigation -->
         <aside class="sidebar">
             <div class="sidebar-brand">
@@ -45,6 +45,9 @@ z    <div class="app-container">
                 <li data-panel="admin-console">
                     <a href="#"><i class="fa-solid fa-user-shield"></i> Admin Console</a>
                 </li>
+                <li class="mt-auto">
+                    <a href="/logout" class="text-danger"><i class="fa-solid fa-right-from-bracket"></i> Logout Session</a>
+                </li>
             </ul>
             
             <div class="sidebar-footer">
@@ -57,8 +60,13 @@ z    <div class="app-container">
         <main class="main-content">
             <!-- Top Header Bar -->
             <header class="topbar">
-                <div class="page-title">
-                    <h2 id="topbar-title-text"><i class="fa-solid fa-chart-line"></i> Dashboard Overview</h2>
+                <div class="d-flex align-items-center">
+                    <div class="mobile-menu-toggle d-block d-lg-none me-3" id="sidebar-toggle" style="cursor: pointer;">
+                        <i class="fa-solid fa-bars fs-4 text-cyan"></i>
+                    </div>
+                    <div class="page-title">
+                        <h2 id="topbar-title-text"><i class="fa-solid fa-chart-line"></i> Dashboard Overview</h2>
+                    </div>
                 </div>
                 <div class="user-profile">
                     <div class="status-badge">
