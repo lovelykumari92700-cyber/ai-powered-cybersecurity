@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Enterprise AI-powered Cybersecurity system for detecting digital fraud, text scams, and phishing URL coordinates.">
+    <title>AI-Powered Digital Fraud, Scam & Phishing Detection System</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Cyber Stylesheet -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+z    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div class="brand-text">
+                    <h1>AEGIS SECURITY</h1>
+                    <span>AI Fraud Engine</span>
+                </div>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li class="active" data-panel="dashboard">
+                    <a href="#"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+                </li>
+                <li data-panel="text-scam">
+                    <a href="#"><i class="fa-solid fa-envelope-open-text"></i> Scam Analyzer</a>
+                </li>
+                <li data-panel="url-phishing">
+                    <a href="#"><i class="fa-solid fa-link"></i> URL Phishing</a>
+                </li>
+                <li data-panel="ml-intelligence">
+                    <a href="#"><i class="fa-solid fa-brain"></i> Threat Intelligence</a>
+                </li>
+                <li data-panel="history">
+                    <a href="#"><i class="fa-solid fa-clock-rotate-left"></i> Scan History</a>
+                </li>
+                <li data-panel="admin-console">
+                    <a href="#"><i class="fa-solid fa-user-shield"></i> Admin Console</a>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <div>System Status: <span class="text-success">ONLINE</span></div>
+                <div class="mt-1" style="font-size: 0.65rem; color: var(--text-muted);">v2.4.0-Beta</div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Header Bar -->
+            <header class="topbar">
+                <div class="page-title">
+                    <h2 id="topbar-title-text"><i class="fa-solid fa-chart-line"></i> Dashboard Overview</h2>
+                </div>
+                <div class="user-profile">
+                    <div class="status-badge">
+                        <span class="status-pulse"></span>
+                        AI Core Active
+                    </div>
+                    <div class="avatar-ring">
+                        <i class="fa-solid fa-circle-nodes"></i>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dynamic Panels -->
+            
+            <!-- PANEL: DASHBOARD -->
+            <div id="panel-dashboard" class="panel active">
+                <!-- Hero Welcome Section -->
+                <section class="hero-section">
+                    <div class="hero-badge">
+                        <i class="fa-solid fa-triangle-exclamation text-cyan"></i> Automated Digital Threat Identification
+                    </div>
+                    <h2 class="hero-title">Protecting Enterprises Against Fraud & Phishing</h2>
+                    <p class="hero-lead">
+                        AEGIS leverages NLP tokenizers, TF-IDF vector models, and multi-layered machine learning classifiers to isolate phishing URLs, credit card scams, banking fraud, and credential hijacking attempts.
+                    </p>
+                    <button class="btn-cyber btn-trigger-scan" data-target="text-scam">
+                        <i class="fa-solid fa-bolt"></i> Start Analyzer
+                    </button>
+                    <button class="btn-cyber-outline ms-2 btn-trigger-scan" data-target="url-phishing">
+                        Analyze URL
+                    </button>
+                </section>
+
+                <!-- Cybersecurity Trend statistics -->
+                <h3 class="font-orbitron mt-5 mb-4 text-white" style="font-size: 1.1rem; letter-spacing: 0.5px;">Global Cybercrime Attack Coordinates</h3>
+                <div class="cyber-trend-grid">
+                    <div class="trend-card">
+                        <div class="trend-card-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
+                        <div class="text-secondary text-uppercase" style="font-size: 0.65rem; letter-spacing: 1px;">Phishing Vectors</div>
+                        <div class="trend-stat">+340%</div>
+                        <p class="trend-desc">Increase in credential harvesting and OTP theft vectors globally over the last quarter.</p>
+                    </div>
+                    <div class="trend-card">
+                        <div class="trend-card-icon"><i class="fa-solid fa-sack-dollar"></i></div>
+                        <div class="text-secondary text-uppercase" style="font-size: 0.65rem; letter-spacing: 1px;">SaaS Spoofing</div>
+                        <div class="trend-stat">73.8%</div>
+                        <p class="trend-desc">Of all social engineering attacks emulate trusted brands, using domain homoglyphs.</p>
+                    </div>
+                    <div class="trend-card">
+                        <div class="trend-card-icon"><i class="fa-solid fa-shield-virus"></i></div>
+                        <div class="text-secondary text-uppercase" style="font-size: 0.65rem; letter-spacing: 1px;">Avg Loss per Attack</div>
+                        <div class="trend-stat">$4.8M</div>
+                        <p class="trend-desc">Average organizational cost incurred due to successful phishing and business compromise.</p>
+                    </div>
+                </div>
+
+                <!-- Live Metrics Summary -->
+                <h3 class="font-orbitron mt-5 mb-4 text-white" style="font-size: 1.1rem; letter-spacing: 0.5px;">Active Engine Statistics</h3>
+                <div class="metric-grid">
+                    <div class="cyber-card metric-card">
+                        <div class="metric-icon cyan"><i class="fa-solid fa-microscope"></i></div>
+                        <div class="metric-info">
+                            <h4>Total Scans</h4>
+                            <div class="value" id="dash-total-scans">0</div>
+                        </div>
+                    </div>
+                    <div class="cyber-card metric-card">
+                        <div class="metric-icon crimson"><i class="fa-solid fa-radiation"></i></div>
+                        <div class="metric-info">
+                            <h4>Threats Defeated</h4>
+                            <div class="value text-danger" id="dash-total-threats">0</div>
+                        </div>
+                    </div>
+                    <div class="cyber-card metric-card">
+                        <div class="metric-icon emerald"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="metric-info">
+                            <h4>Average Risk Score</h4>
+                            <div class="value text-success" id="dash-avg-risk">0%</div>
+                        </div>
+                    </div>
+                    <div class="cyber-card metric-card">
+                        <div class="metric-icon amber"><i class="fa-solid fa-circle-nodes"></i></div>
+                        <div class="metric-info">
+                            <h4>Success Rate</h4>
+                            <div class="value text-warning" id="dash-success-rate">98.6%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Interactive Charts -->
+                <div class="row g-4 mt-2">
+                    <div class="col-lg-6">
+                        <div class="cyber-card">
+                            <h4 class="cyber-card-title">Threat Classification Coordinates <i class="fa-solid fa-chart-pie"></i></h4>
+                            <div style="height: 300px; position: relative;">
+                                <canvas id="chart-scam-distribution"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="cyber-card">
+                            <h4 class="cyber-card-title">Severity Vectors Trend <i class="fa-solid fa-chart-column"></i></h4>
+                            <div style="height: 300px; position: relative;">
+                                <canvas id="chart-threat-trends"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="cyber-card">
+                            <h4 class="cyber-card-title">Monthly Detection Metrics Tracking <i class="fa-solid fa-chart-line"></i></h4>
+                            <div style="height: 250px; position: relative;">
+                                <canvas id="chart-monthly-logs"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Features overview -->
+                <h3 class="font-orbitron mt-5 mb-4 text-white" style="font-size: 1.1rem; letter-spacing: 0.5px;">Engine Core Features</h3>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="cyber-card feature-box">
+                            <div class="feature-box-icon"><i class="fa-solid fa-spell-check"></i></div>
+                            <h4>NLP Red Flag Engine</h4>
+                            <p>Scans content for urgent vocabulary, financial coercion, OTP requests, and bank spoofing keywords, instantly highlighting flags.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="cyber-card feature-box">
+                            <div class="feature-box-icon"><i class="fa-solid fa-network-wired"></i></div>
+                            <h4>Phishing URL Analyzer</h4>
+                            <p>Analyzes domain length, subdomains, special character encoding anomalies, and missing SSL/HTTPS to intercept spoof portals.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="cyber-card feature-box">
+                            <div class="feature-box-icon"><i class="fa-solid fa-diagram-project"></i></div>
+                            <h4>Multi-Model ML Inference</h4>
+                            <p>Leverages trained ensembles of Naive Bayes, Logistic Regression, and Random Forest classifiers to predict fraud classes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL: TEXT SCAM ANALYZER -->
+            <div id="panel-text-scam" class="panel">
+                <div class="row g-4">
+                    <!-- Input Section -->
+                    <div class="col-lg-6">
+                        <div class="cyber-card">
+                            <h4 class="cyber-card-title">Content Input Portal <i class="fa-solid fa-terminal"></i></h4>
+                            <div class="input-section">
+                                <label for="text-scam-input" class="text-secondary" style="font-size: 0.8rem;">Paste SMS text, suspicious email body, job recruitment offer, or investment message below:</label>
+                                <textarea id="text-scam-input" class="cyber-textarea" placeholder="Paste suspected message here..."></textarea>
+                                
+                                <div class="preset-label text-secondary" style="font-size: 0.75rem;">Preset Testing Templates:</div>
+                                <div class="preset-container">
+                                    <span class="preset-pill" onclick="loadPreset('otp')">OTP Request Scam</span>
+                                    <span class="preset-pill" onclick="loadPreset('bank')">Chase Bank Block</span>
+                                    <span class="preset-pill" onclick="loadPreset('job')">$500/Day Remote Recruiter</span>
+                                    <span class="preset-pill" onclick="loadPreset('investment')">Crypto Guaranteed Doubler</span>
+                                    <span class="preset-pill" onclick="loadPreset('lottery')">Free Raffle Winner</span>
+                                    <span class="preset-pill" onclick="loadPreset('safe')">Safe Calendar Invite</span>
+                                </div>
+                                
+                                <div class="mt-3">
+                                    <label for="select-ml-model" class="text-secondary mb-2" style="font-size: 0.8rem;">Select Target ML Model:</label>
+                                    <select id="select-ml-model" class="cyber-select w-100">
+                                        <option value="Logistic Regression">Logistic Regression (Balanced - Recommended)</option>
+                                        <option value="Naive Bayes">Naive Bayes (MultinomialNB - Fast Classifier)</option>
+                                        <option value="Random Forest">Random Forest (High Dimensional Ensemble)</option>
+                                    </select>
+                                </div>
+                                
+                                <button id="btn-analyze-text" class="btn-cyber w-100 mt-2">
+                                    <i class="fa-solid fa-microchip"></i> Execute Analysis
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Output Section -->
+                    <div class="col-lg-6">
+                        <div class="cyber-card" style="min-height: 480px;">
+                            <h4 class="cyber-card-title">Threat Assessment Report <i class="fa-solid fa-file-shield"></i></h4>
+                            
+                            <!-- Initial state message -->
+                            <div id="text-scam-initial-state" class="d-flex flex-column align-items-center justify-content-center text-center h-100 text-muted mt-5">
+                                <i class="fa-solid fa-fingerprint mb-3" style="font-size: 3rem; color: var(--border-glow);"></i>
+                                <p>Awaiting text input coordinates. Submit suspicious body to run the NLP & Machine Learning engines.</p>
+                            </div>
+                            
+                            <!-- Loading Scanner -->
+                            <div id="text-scam-loading" class="scanning-overlay d-none">
+                                <div class="scan-radar">
+                                    <i class="fa-solid fa-user-secret"></i>
+                                    <div class="scan-pulse-line"></div>
+                                </div>
+                                <div class="scan-status-text">RUNNING COGNITIVE EVALUATION...</div>
+                            </div>
+                            
+                            <!-- Analysis Results Block -->
+                            <div id="text-scam-results" class="d-none">
+                                <div class="results-grid">
+                                    <!-- Circular Risk gauge -->
+                                    <div class="cyber-card text-center" style="background: rgba(0,0,0,0.2);">
+                                        <div class="risk-gauge-container">
+                                            <div class="position-relative d-flex align-items-center justify-content-center">
+                                                <svg class="gauge-svg">
+                                                    <circle class="gauge-track" cx="80" cy="80" r="70"></circle>
+                                                    <circle id="text-gauge-fill" class="gauge-fill" cx="80" cy="80" r="70" stroke-dasharray="440" stroke-dashoffset="440"></circle>
+                                                </svg>
+                                                <div class="gauge-text">
+                                                    <span id="text-risk-score" class="gauge-value">0%</span>
+                                                    <span class="gauge-label">RISK LEVEL</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <span id="text-threat-badge" class="threat-level-badge safe">Safe</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Predict indicators -->
+                                    <div class="cyber-card" style="background: rgba(0,0,0,0.2); padding: 18px;">
+                                        <div class="mb-3">
+                                            <div class="text-secondary text-uppercase" style="font-size: 0.65rem; letter-spacing: 1px;">Predicted Category</div>
+                                            <div class="text-white font-orbitron font-weight-bold" id="text-predicted-category" style="font-size: 1.1rem; margin-top: 4px;">Unknown Risk</div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="text-secondary text-uppercase" style="font-size: 0.65rem; letter-spacing: 1px;">Model Confidence</div>
+                                            <div class="text-white font-orbitron font-weight-bold" id="text-confidence-score" style="font-size: 1.1rem; margin-top: 4px;">0%</div>
+                                        </div>
+                                        <div>
+                                            <div class="text-secondary text-uppercase" style="font-size: 0.65rem; letter-spacing: 1px;">Engine Selected</div>
+                                            <div class="text-cyan font-orbitron" id="text-model-selected" style="font-size: 0.85rem; margin-top: 4px;">Logistic Regression</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Red Flag Keywords highlights -->
+                                <div class="mt-4">
+                                    <h5 class="text-white font-orbitron mb-2" style="font-size: 0.85rem;">Highlighted Suspicious Expressions</h5>
+                                    <div id="text-highlighted-output" class="display-output-box mb-3"></div>
+                                </div>
+
+                                <!-- Red Flags Breakdown -->
+                                <div class="mt-4">
+                                    <h5 class="text-white font-orbitron mb-2" style="font-size: 0.85rem;">Identified Phishing Red Flags</h5>
+                                    <div id="text-flags-list" class="flag-tag-list"></div>
+                                    <div id="text-no-flags" class="text-secondary" style="font-size: 0.8rem;"><i class="fa-solid fa-circle-check text-success"></i> No rule-based red flag indicators matched this content.</div>
+                                </div>
+
+                                <!-- Recommendation Engine -->
+                                <div class="mt-4 border-top pt-3 border-secondary">
+                                    <h5 class="text-white font-orbitron mb-3" style="font-size: 0.85rem;"><i class="fa-solid fa-list-check text-cyan"></i> Actionable Security Recommendations</h5>
+                                    <ul id="text-recommendations" class="recs-list"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL: URL PHISHING SCANNER -->
+            <div id="panel-url-phishing" class="panel">
+                <div class="row g-4">
+                    <!-- URL input card -->
+                    <div class="col-lg-6">
+                        <div class="cyber-card">
+                            <h4 class="cyber-card-title">Phishing Coordinate Scanner <i class="fa-solid fa-circle-nodes"></i></h4>
+                            <div class="input-section">
+                                <label for="url-phishing-input" class="text-secondary" style="font-size: 0.8rem;">Enter the website domain address to evaluate spoof structure:</label>
+                                <input type="text" id="url-phishing-input" class="cyber-input" placeholder="e.g. netflix-billing-update-login.com/security">
+                                
+                                <div class="preset-label text-secondary" style="font-size: 0.75rem;">Preset Testing URLs:</div>
+                                <div class="preset-container">
+                                    <span class="preset-pill" onclick="loadUrlPreset('http://192.168.4.12/secure-portal/login.html')">IP Address Host</span>
+                                    <span class="preset-pill" onclick="loadUrlPreset('https://paypal.com.verify.identity-auth.ru/login')">High Subdomain Spoof</span>
+                                    <span class="preset-pill" onclick="loadUrlPreset('http://chase-update-bank-credentials.net')">Keyword Stuffed HTTP</span>
+                                    <span class="preset-pill" onclick="loadUrlPreset('https://bit.ly/3yR9p1x')">Shortener Link redirection</span>
+                                    <span class="preset-pill" onclick="loadUrlPreset('https://www.google.com')">Standard Secure Site</span>
+                                </div>
+                                
+                                <button id="btn-analyze-url" class="btn-cyber w-100 mt-4">
+                                    <i class="fa-solid fa-radar"></i> Deploy URL Scan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- URL result card -->
+                    <div class="col-lg-6">
+                        <div class="cyber-card" style="min-height: 480px;">
+                            <h4 class="cyber-card-title">Structural Risk Verdict <i class="fa-solid fa-route"></i></h4>
+                            
+                            <!-- Initial state message -->
+                            <div id="url-initial-state" class="d-flex flex-column align-items-center justify-content-center text-center h-100 text-muted mt-5">
+                                <i class="fa-solid fa-link-slash mb-3" style="font-size: 3rem; color: var(--border-glow);"></i>
+                                <p>Awaiting URL submission. Submit suspicious domain link coordinates to analyze protocol structure, encoding, redirection layers, and spoof patterns.</p>
+                            </div>
+                            
+                            <!-- Loading Spinner -->
+                            <div id="url-loading" class="scanning-overlay d-none">
+                                <div class="scan-radar">
+                                    <i class="fa-solid fa-satellite-dish"></i>
+                                    <div class="scan-pulse-line"></div>
+                                </div>
+                                <div class="scan-status-text">DECODING URL GEOMETRY...</div>
+                            </div>
+                            
+                            <!-- Analysis Results Block -->
+                            <div id="url-results" class="d-none">
+                                <div class="results-grid">
+                                    <!-- Circular gauge -->
+                                    <div class="cyber-card text-center" style="background: rgba(0,0,0,0.2);">
+                                        <div class="risk-gauge-container">
+                                            <div class="position-relative d-flex align-items-center justify-content-center">
+                                                <svg class="gauge-svg">
+                                                    <circle class="gauge-track" cx="80" cy="80" r="70"></circle>
+                                                    <circle id="url-gauge-fill" class="gauge-fill" cx="80" cy="80" r="70" stroke-dasharray="440" stroke-dashoffset="440"></circle>
+                                                </svg>
+                                                <div class="gauge-text">
+                                                    <span id="url-risk-score" class="gauge-value">0%</span>
+                                                    <span class="gauge-label">RISK LEVEL</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <span id="url-threat-badge" class="threat-level-badge safe">Safe</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Predict details -->
+                                    <div class="cyber-card" style="background: rgba(0,0,0,0.2); padding: 18px;">
+                                        <div class="mb-3">
+                                            <div class="text-secondary text-uppercase" style="font-size: 0.65rem; letter-spacing: 1px;">URL Verdict</div>
+                                            <div class="text-white font-orbitron font-weight-bold" id="url-verdict" style="font-size: 1.1rem; margin-top: 4px;">Safe</div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="text-secondary text-uppercase" style="font-size: 0.65rem; letter-spacing: 1px;">Safety Score</div>
+                                            <div class="text-white font-orbitron font-weight-bold" id="url-safety-score" style="font-size: 1.1rem; margin-top: 4px;">100%</div>
+                                        </div>
+                                        <div>
+                                            <div class="text-secondary text-uppercase" style="font-size: 0.65rem; letter-spacing: 1px;">Analysis Confidence</div>
+                                            <div class="text-cyan font-orbitron" id="url-confidence" style="font-size: 0.85rem; margin-top: 4px;">98%</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Risk Explanation text -->
+                                <div class="mt-4">
+                                    <h5 class="text-white font-orbitron mb-2" style="font-size: 0.85rem;">Analysis Summary</h5>
+                                    <div class="display-output-box" id="url-explanation" style="font-size: 0.85rem;"></div>
+                                </div>
+
+                                <!-- URL threat indicators list -->
+                                <div class="mt-4">
+                                    <h5 class="text-white font-orbitron mb-3" style="font-size: 0.85rem;">Identified URL Anomalies</h5>
+                                    <div id="url-indicators-list" class="url-indicators-list"></div>
+                                    <div id="url-no-indicators" class="text-secondary" style="font-size: 0.8rem;"><i class="fa-solid fa-circle-check text-success"></i> No structural anomalies matched the target URL.</div>
+                                </div>
+
+                                <!-- Recommendations -->
+                                <div class="mt-4 border-top pt-3 border-secondary">
+                                    <h5 class="text-white font-orbitron mb-3" style="font-size: 0.85rem;"><i class="fa-solid fa-shield-heart text-cyan"></i> Actionable URL Guidelines</h5>
+                                    <ul id="url-recommendations" class="recs-list"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL: MACHINE LEARNING INTELLIGENCE -->
+            <div id="panel-ml-intelligence" class="panel">
+                <div class="hero-badge mb-3">
+                    <i class="fa-solid fa-microchip"></i> System Models Analytics
+                </div>
+                <h3 class="text-white font-orbitron mb-4">Core Model Training Intelligence</h3>
+                <p class="text-secondary mb-4">
+                    The classification engine compiles three supervised text classifiers mapping words to semantic threat vectors.
+                    Below are validation coordinates calculated from testing datasets after TF-IDF vector fitting.
+                </p>
+
+                <!-- Model Stats grid cards -->
+                <div class="row g-4 mb-4" id="ml-models-container">
+                    <!-- Logistic Regression -->
+                    <div class="col-lg-4">
+                        <div class="cyber-card">
+                            <h4 class="cyber-card-title">Logistic Regression <span class="badge bg-secondary font-orbitron" style="font-size: 0.65rem;">Default</span></h4>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-secondary">Accuracy:</span>
+                                <span class="text-white font-orbitron font-weight-bold ml-accuracy">0%</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-secondary">Precision:</span>
+                                <span class="text-white font-orbitron font-weight-bold ml-precision">0%</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-secondary">Recall:</span>
+                                <span class="text-white font-orbitron font-weight-bold ml-recall">0%</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span class="text-secondary">F1 Score:</span>
+                                <span class="text-cyan font-orbitron font-weight-bold ml-f1">0%</span>
+                            </div>
+                            <div class="mt-4 text-center border-top border-secondary pt-3">
+                                <button class="btn-cyber-outline btn-sm font-orbitron w-100" onclick="viewConfusionMatrix('Logistic Regression')">Confusion Matrix</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Naive Bayes -->
+                    <div class="col-lg-4">
+                        <div class="cyber-card">
+                            <h4 class="cyber-card-title">Naive Bayes <span class="badge bg-dark border border-secondary text-secondary font-orbitron" style="font-size: 0.65rem;">MultinomialNB</span></h4>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-secondary">Accuracy:</span>
+                                <span class="text-white font-orbitron font-weight-bold ml-accuracy">0%</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-secondary">Precision:</span>
+                                <span class="text-white font-orbitron font-weight-bold ml-precision">0%</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-secondary">Recall:</span>
+                                <span class="text-white font-orbitron font-weight-bold ml-recall">0%</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span class="text-secondary">F1 Score:</span>
+                                <span class="text-cyan font-orbitron font-weight-bold ml-f1">0%</span>
+                            </div>
+                            <div class="mt-4 text-center border-top border-secondary pt-3">
+                                <button class="btn-cyber-outline btn-sm font-orbitron w-100" onclick="viewConfusionMatrix('Naive Bayes')">Confusion Matrix</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Random Forest -->
+                    <div class="col-lg-4">
+                        <div class="cyber-card">
+                            <h4 class="cyber-card-title">Random Forest <span class="badge bg-dark border border-secondary text-secondary font-orbitron" style="font-size: 0.65rem;">Ensemble</span></h4>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-secondary">Accuracy:</span>
+                                <span class="text-white font-orbitron font-weight-bold ml-accuracy">0%</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-secondary">Precision:</span>
+                                <span class="text-white font-orbitron font-weight-bold ml-precision">0%</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-secondary">Recall:</span>
+                                <span class="text-white font-orbitron font-weight-bold ml-recall">0%</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span class="text-secondary">F1 Score:</span>
+                                <span class="text-cyan font-orbitron font-weight-bold ml-f1">0%</span>
+                            </div>
+                            <div class="mt-4 text-center border-top border-secondary pt-3">
+                                <button class="btn-cyber-outline btn-sm font-orbitron w-100" onclick="viewConfusionMatrix('Random Forest')">Confusion Matrix</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature Extraction & Training Info -->
+                <div class="cyber-card mt-4">
+                    <h4 class="cyber-card-title">Algorithm Feature Space Pipeline <i class="fa-solid fa-route"></i></h4>
+                    <p class="text-secondary" style="font-size: 0.85rem;">
+                        Inputs are vectorized using **TF-IDF (Term Frequency-Inverse Document Frequency)** matching words and sub-sequences of words (N-grams ranges 1 to 2). The tokenizer filters English stopwords and standardizes capitalization, maps text inputs to a sparse high-dimensional vector space, and predicts category vectors:
+                    </p>
+                    <div class="matrix-container align-items-start mt-3">
+                        <table class="cyber-table w-100" style="font-size: 0.8rem;">
+                            <thead>
+                                <tr>
+                                    <th>Algorithm</th>
+                                    <th>Feature Selection</th>
+                                    <th>Model Weights</th>
+                                    <th>Use Case Target</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Logistic Regression</strong></td>
+                                    <td>Sparse TF-IDF Vectors (L2 Normalization)</td>
+                                    <td>Maximum Likelihood Estimation Coefficients</td>
+                                    <td>Balanced text classifications, general multi-class scam detection.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Naive Bayes (Multinomial)</strong></td>
+                                    <td>Word count relative frequencies (Laplace smoothed)</td>
+                                    <td>Prior probability logs + feature likelihood logs</td>
+                                    <td>Fast keyword-frequency-focused checks, high-volume spam.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Random Forest</strong></td>
+                                    <td>Decision tree sub-selection matrices</td>
+                                    <td>Entropy split thresholds, weighted voting</td>
+                                    <td>Identifies complex combinations of multi-word flags.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL: HISTORY EXPLORER -->
+            <div id="panel-history" class="panel">
+                <div class="hero-badge mb-3">
+                    <i class="fa-solid fa-clock-rotate-left"></i> History Records
+                </div>
+                <h3 class="text-white font-orbitron mb-4">Historical Scanning Log Console</h3>
+
+                <!-- Filter Controls -->
+                <div class="filters-bar">
+                    <input type="text" id="history-search-input" class="cyber-input flex-grow-1" style="font-size: 0.85rem;" placeholder="Search scanned content or URL keywords...">
+                    
+                    <select id="history-filter-category" class="cyber-select">
+                        <option value="">All Threat Categories</option>
+                        <option value="OTP Scam">OTP Scam</option>
+                        <option value="Banking Scam">Banking Scam</option>
+                        <option value="Job Scam">Job Scam</option>
+                        <option value="Lottery Scam">Lottery Scam</option>
+                        <option value="Investment Scam">Investment Scam</option>
+                        <option value="Loan Scam">Loan Scam</option>
+                        <option value="Prize Scam">Prize Scam</option>
+                        <option value="Phishing Scam">Phishing Scam</option>
+                        <option value="Safe">Safe</option>
+                        <option value="Unknown Risk">Unknown Risk</option>
+                    </select>
+
+                    <select id="history-filter-risk" class="cyber-select">
+                        <option value="">All Risk Levels</option>
+                        <option value="Safe">Safe</option>
+                        <option value="Low Risk">Low Risk</option>
+                        <option value="Medium Risk">Medium Risk</option>
+                        <option value="High Risk">High Risk</option>
+                        <option value="Critical Risk">Critical Risk</option>
+                    </select>
+
+                    <button id="btn-reset-filters" class="btn-cyber-outline font-orbitron">
+                        Reset
+                    </button>
+                </div>
+
+                <!-- Table Grid -->
+                <div class="cyber-card">
+                    <div class="cyber-table-container">
+                        <table class="cyber-table" id="history-table">
+                            <thead>
+                                <tr>
+                                    <th>Scan ID</th>
+                                    <th>Date & Time</th>
+                                    <th>Type</th>
+                                    <th>Target Source</th>
+                                    <th>Threat category</th>
+                                    <th>Risk Score</th>
+                                    <th>Status Level</th>
+                                    <th class="text-center">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody id="history-table-body">
+                                <!-- Loaded dynamically via app.js -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL: ADMIN CONSOLE -->
+            <div id="panel-admin-console" class="panel">
+                <div class="hero-badge mb-3">
+                    <i class="fa-solid fa-user-shield"></i> Administration Console
+                </div>
+                <h3 class="text-white font-orbitron mb-4">Enterprise System Monitoring Dashboard</h3>
+                <p class="text-secondary mb-4">
+                    Administrative console to audit threats detected, analyze peak workloads, inspect user agents, and monitor host system resources.
+                </p>
+
+                <!-- Core Admin Metrics -->
+                <div class="metric-grid">
+                    <div class="cyber-card metric-card">
+                        <div class="metric-icon cyan"><i class="fa-solid fa-server"></i></div>
+                        <div class="metric-info">
+                            <h4>CPU Allocation</h4>
+                            <div class="value font-orbitron">4.2%</div>
+                        </div>
+                    </div>
+                    <div class="cyber-card metric-card">
+                        <div class="metric-icon purple"><i class="fa-solid fa-database"></i></div>
+                        <div class="metric-info">
+                            <h4>Memory Load</h4>
+                            <div class="value font-orbitron text-purple">122 MB</div>
+                        </div>
+                    </div>
+                    <div class="cyber-card metric-card">
+                        <div class="metric-icon crimson"><i class="fa-solid fa-shield-virus"></i></div>
+                        <div class="metric-info">
+                            <h4>Critical Audits</h4>
+                            <div class="value font-orbitron text-danger" id="admin-critical-count">0</div>
+                        </div>
+                    </div>
+                    <div class="cyber-card metric-card">
+                        <div class="metric-icon emerald"><i class="fa-solid fa-wifi"></i></div>
+                        <div class="metric-info">
+                            <h4>System Latency</h4>
+                            <div class="value font-orbitron text-success">14 ms</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Analytics Charts & Active Logs -->
+                <div class="row g-4 mt-2">
+                    <div class="col-lg-8">
+                        <div class="cyber-card">
+                            <h4 class="cyber-card-title">Live Server Workload Metrics <i class="fa-solid fa-chart-line"></i></h4>
+                            <div style="height: 250px; position: relative;">
+                                <canvas id="chart-admin-workload"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="cyber-card">
+                            <h4 class="cyber-card-title">Host Server Allocation <i class="fa-solid fa-server"></i></h4>
+                            <div class="d-flex flex-column gap-3 mt-3">
+                                <div>
+                                    <div class="d-flex justify-content-between text-secondary mb-1" style="font-size: 0.75rem;">
+                                        <span>CPU Core Usage</span>
+                                        <span class="text-white">4%</span>
+                                    </div>
+                                    <div class="progress" style="height: 6px; background-color: rgba(255,255,255,0.05);">
+                                        <div class="progress-bar bg-cyan" role="progressbar" style="width: 4%;"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="d-flex justify-content-between text-secondary mb-1" style="font-size: 0.75rem;">
+                                        <span>RAM utilization</span>
+                                        <span class="text-white">12%</span>
+                                    </div>
+                                    <div class="progress" style="height: 6px; background-color: rgba(255,255,255,0.05);">
+                                        <div class="progress-bar bg-purple" role="progressbar" style="width: 12%;"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="d-flex justify-content-between text-secondary mb-1" style="font-size: 0.75rem;">
+                                        <span>DB Buffer Cache</span>
+                                        <span class="text-white">96%</span>
+                                    </div>
+                                    <div class="progress" style="height: 6px; background-color: rgba(255,255,255,0.05);">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 96%;"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="d-flex justify-content-between text-secondary mb-1" style="font-size: 0.75rem;">
+                                        <span>Endpoint Network Bandwidth</span>
+                                        <span class="text-white">1.8 MB/s</span>
+                                    </div>
+                                    <div class="progress" style="height: 6px; background-color: rgba(255,255,255,0.05);">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 34%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Critical scan audit logs -->
+                    <div class="col-12">
+                        <div class="cyber-card">
+                            <h4 class="cyber-card-title">Host Operations & High Risk Detection Audits <i class="fa-solid fa-list-check"></i></h4>
+                            <div class="cyber-table-container">
+                                <table class="cyber-table" id="admin-audit-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Timestamp</th>
+                                            <th>Trigger Source</th>
+                                            <th>Category Type</th>
+                                            <th>Audit Message</th>
+                                            <th>Risk Code</th>
+                                            <th>Operator Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="admin-audit-table-body">
+                                        <!-- Loaded dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL: CONFUSION MATRIX VIEWER -->
+    <div class="modal fade" id="modal-confusion-matrix" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content cyber-modal">
+                <div class="modal-header cyber-modal-header">
+                    <h5 class="modal-title font-orbitron" id="matrix-modal-title">Confusion Matrix Coordinates</h5>
+                    <button type="button" class="cyber-close-btn" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <p class="text-secondary" style="font-size: 0.85rem;">
+                        This matrix illustrates predicted vs. actual test categories. Darker glows represent true classification rates.
+                    </p>
+                    <div class="d-flex justify-content-center">
+                        <div id="confusion-matrix-grid" class="matrix-grid-visual">
+                            <!-- Matrix cells populated by JS -->
+                        </div>
+                    </div>
+                    <div class="mt-4 text-start bg-dark p-3 rounded" style="border: 1px solid var(--border-color);">
+                        <h6 class="font-orbitron text-cyan mb-2" style="font-size: 0.8rem;">Label Indices:</h6>
+                        <ol id="matrix-labels-list" class="text-secondary list-decimal ps-3" style="font-size: 0.75rem; line-height: 1.4;"></ol>
+                    </div>
+                </div>
+                <div class="modal-footer cyber-modal-footer">
+                    <button type="button" class="btn-cyber-outline btn-sm font-orbitron" data-bs-dismiss="modal">Close Console</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: SCAN DETAILS DIALOG -->
+    <div class="modal fade" id="modal-scan-details" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content cyber-modal">
+                <div class="modal-header cyber-modal-header">
+                    <h5 class="modal-title font-orbitron"><i class="fa-solid fa-shield-halved text-cyan"></i> Scan Record Audit</h5>
+                    <button type="button" class="cyber-close-btn" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="text-secondary text-uppercase" style="font-size: 0.65rem; letter-spacing: 1px;">Record Timestamp</div>
+                            <div class="text-white font-orbitron" id="detail-timestamp" style="font-size: 0.9rem;">-</div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="text-secondary text-uppercase" style="font-size: 0.65rem; letter-spacing: 1px;">Target Type</div>
+                            <div class="text-white font-orbitron" id="detail-type" style="font-size: 0.9rem;">-</div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="text-secondary text-uppercase" style="font-size: 0.65rem; letter-spacing: 1px;">Threat Category</div>
+                            <div class="text-cyan font-orbitron" id="detail-category" style="font-size: 0.9rem;">-</div>
+                        </div>
+                        <div class="col-12 border-top border-secondary pt-3">
+                            <div class="text-secondary text-uppercase" style="font-size: 0.65rem; letter-spacing: 1px;">Input Content</div>
+                            <div class="bg-dark p-3 rounded text-white mt-2 font-monospace" id="detail-content" style="font-size: 0.82rem; white-space: pre-wrap; word-break: break-all; max-height: 150px; overflow-y: auto; border: 1px solid var(--border-color);">
+                                -
+                            </div>
+                        </div>
+                        <div class="col-md-6 border-top border-secondary pt-3">
+                            <div class="text-secondary text-uppercase mb-2" style="font-size: 0.65rem; letter-spacing: 1px;">Risk Evaluation</div>
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="threat-level-badge" id="detail-threat-badge">-</span>
+                                <span class="font-orbitron font-weight-bold" style="font-size: 1.25rem;" id="detail-risk-score">-</span>
+                            </div>
+                        </div>
+                        <div class="col-12 border-top border-secondary pt-3">
+                            <div class="text-secondary text-uppercase mb-2" style="font-size: 0.65rem; letter-spacing: 1px;">Triggered Flags</div>
+                            <div id="detail-flags-list" class="d-flex flex-wrap gap-2"></div>
+                            <div id="detail-no-flags" class="text-secondary d-none" style="font-size: 0.8rem;"><i class="fa-solid fa-circle-check text-success"></i> No flags identified.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer cyber-modal-footer">
+                    <button type="button" class="btn-cyber-outline btn-sm font-orbitron" data-bs-dismiss="modal">Close Record</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle (Includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Main UI Scripting -->
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
